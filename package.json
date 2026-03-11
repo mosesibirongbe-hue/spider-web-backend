@@ -1,0 +1,25 @@
+{
+  "name": "spider-web-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "description": "The backend for the Spider Web App, Let's build something people want!!! :)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch --trace-warnings index.js"
+  },
+
+  "author": "Mojiboye Emmanuel (Dynasty)",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.3",
+    "nodemailer": "^7.0.5"
+  }
+}
