@@ -1,3 +1,4 @@
+require('dotenv').config();
 const authRouter = require('./routers/authRouter.js');
 const platformsRouter = require('./routers/platformsRouter.js');
 const express = require('express');
@@ -16,12 +17,14 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true })); // our app is extended with the url encoded data
 
-// mongoose
-//     .connect(process.env.MONGO_URL).then(() => {
-//         console.log('database connected')
-//     }).catch(err => {
-//         console.log(err);
-//     });
+console.log(process.env.MONGO_URL)
+
+mongoose
+    .connect(process.env.MONGO_URL).then(() => {
+        console.log('database connected')
+    }).catch(err => {
+        console.log(err);
+    });
 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/platforms', platformsRouter);
