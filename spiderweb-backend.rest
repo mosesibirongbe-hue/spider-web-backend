@@ -29,4 +29,10 @@ Content-Type: application/json
 ### Sign Out Route
 POST http://localhost:8000/api/v1/auth/signout
 
-### 
+### Send Verification Code
+PATCH http://localhost:8000/api/v1/auth/send-verification-code
+Content-Type: application/json
+
+{
+    "email": "emzzyoluwole@gmail.com"
+}
