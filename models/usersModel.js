@@ -38,6 +38,19 @@ const userSchema = mongoose.Schema({
         type: String,
         select: false,
     },
+
+    /**
+     * verificationCodeAttempts: Number
+verificationCodeAttemptsWindow: Date
+     */
+    verificationCodeAttemps: {
+        type: Number,
+        select: false
+    },
+    verificationCodeAttemptsWindow: {
+        type: Date,
+        select: false
+    },
     verificationCodeValidation: {
         type: Number,
         select: false,
