@@ -1,5 +1,5 @@
 const authRouter = require('./routers/authRouter.js');
-const authRouter = require('./routers/platformsRouter.js');
+const platformsRouter = require('./routers/platformsRouter.js');
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
@@ -23,13 +23,13 @@ app.use(express.urlencoded({ extended: true })); // our app is extended with the
 //         console.log(err);
 //     });
 
-app.use('/api/auth', authRouter)
-app.use('/api/platforms', platformsRouter);
-app.get('/', (req, res) => {
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/platforms', platformsRouter);
+app.get('/api/v1/', (req, res) => {
     res.json({ message: "Hello from the Spider Web's Backend" });
 })
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 8000, () => {
     console.log('listening...')
 });
 

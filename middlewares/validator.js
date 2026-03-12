@@ -1,6 +1,16 @@
 const Joi = require('joi');
 
 exports.signUpSchema = Joi.object({
+    fullName: Joi.string()
+        .min(6)
+        .max(60)
+        .required(),
+
+    userName: Joi.string()
+        .min(6)
+        .max(60)
+        .required(),
+
     email: Joi.string()
         .min(6)
         .max(60)
@@ -66,11 +76,11 @@ exports.createPostSchema = Joi.object({
         .min(3)
         .max(60)
         .required()
-        ,
+    ,
     description: Joi.string()
         .min(3)
         .max(60)
         .required()
-        ,
+    ,
     userId: Joi.string().required(),
 })

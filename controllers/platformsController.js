@@ -1,6 +1,12 @@
 const { createPlatformSchema } = require('../middlewares/validator')
 const platform = require("../models/platformsModel");
 
+exports.greeting = async (req, res) => {
+    console.log("Welcome to the platforms router :)")
+    return res.status(200).json({ success: true, message: "Welcome to the platforms router"})
+}
+
+
 exports.getPlatforms = async (req, res) => {
     const { page } = req.query
     const platformsPerPage = 10;
