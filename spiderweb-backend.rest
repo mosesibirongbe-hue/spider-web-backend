@@ -7,12 +7,26 @@ GET http://localhost:8000/api/v1/auth/greeting
 GET http://localhost:8000/api/v1/platforms/greeting
 
 ### Sign Up Route
-POST http://localhost:8000/api/v1/signup
+POST http://localhost:8000/api/v1/auth/signup
 Content-Type: application/json
 
 {
     "fullName": "Mojiboye Emmanuel",
-    "userName": "dynasty",
-    "email": "emzzyoluewole@gmail.com",
-    "password": "dynasty1234"
+    "userName": "dynasty241",
+    "email": "emzzyoluwole@gmail.com",
+    "password": "Dynastyda1234#"
 }
+
+### Sign In Route
+POST http://localhost:8000/api/v1/auth/signin
+Content-Type: application/json
+
+{
+    "email": "emzzyoluwole@gmail.com",
+    "password": "Dynastyda1234#"
+}
+
+### Sign Out Route
+POST http://localhost:8000/api/v1/auth/signout
+
+### 
