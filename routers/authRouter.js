@@ -7,7 +7,7 @@ router.get('/greeting', authController.greeting);
 
 router.post('/signup', authController.signup);
 router.post('/signin', authController.signin);
-router.post('/signout', identifier, authController.signout);
+router.post('/signout', authController.signout);
 
 router.patch('/send-verification-code', identifier, authController.sendVerificationCode);
 router.patch('/verify-verification-code', identifier, authController.verifyVerificationCode);
