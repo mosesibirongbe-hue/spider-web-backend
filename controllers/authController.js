@@ -12,7 +12,9 @@ exports.greeting = async (req, res) => {
 exports.signup = async (req, res) => {
     const { fullName, userName, email, password } = req.body;
     try {
-        const { error, value } = signUpSchema.validate({ email, password });
+        const { error, value } = signUpSchema.validate({ fullName, userName, email, password });
+
+        console.log(error);
 
         if (error) {
             return res.status(401).json({ success: false, message: error.details[0].message })
@@ -50,6 +52,7 @@ exports.signup = async (req, res) => {
 }
 
 // Sign In looks cool (email and password) but Sign Up would need user's full name.
+// For Now though, later on this will be updated to make room for user being able to sign in either with email or username
 
 exports.signin = async (req, res) => {
     const { email, password } = req.body;
