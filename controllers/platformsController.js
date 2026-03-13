@@ -54,7 +54,7 @@ exports.singlePlatform = async (req, res) => {
 }
 
 exports.createPlatform = async (req, res) => {
-    const { title, description } = req.body;
+    const { title, description, link } = req.body;
     const { userId } = req.user;
     // const userId = req.user.userId;
 
@@ -62,6 +62,7 @@ exports.createPlatform = async (req, res) => {
         const { error, value } = createPlatformSchema.validate({
             title,
             description,
+            link,
             userId,
         });
         if (error) {
@@ -71,7 +72,7 @@ exports.createPlatform = async (req, res) => {
         }
 
         const result = await platform.create({
-            title, description, userId,
+            title, description, link, userId,
         })
         res.status(201).json({ success: true, message: 'platform created', data: result });
     } catch (error) {
@@ -81,13 +82,14 @@ exports.createPlatform = async (req, res) => {
 
 exports.updatePlatform = async (req, res) => {
     const {_id} = req.query;
-    const { title, description } = req.body;
+    const { title, description, link } = req.body;
     const userId = req.user.userId;
 
     try {
         const { error, value } = createPlatformSchema.validate({
             title,
             description,
+            link,
             userId,
         });
         if (error) {
@@ -109,6 +111,7 @@ exports.updatePlatform = async (req, res) => {
         }
         existingPlatform.title = title;
         existingPlatform.description = description;
+        existingPlatform.link = link;
 
         const result = await existingPlatform.save();
         res.status(201).json({ success: true, message: 'platform Updated', data: result });
