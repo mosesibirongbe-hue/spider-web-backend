@@ -11,6 +11,11 @@ const platformSchema = mongoose.Schema({
         required: [true, 'Description is required'],
         trim: true
     },
+    link: {
+        type: String,
+        required: [true, 'Link for Platform is required'],
+        trim: true
+    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
