@@ -11,9 +11,9 @@ POST http://localhost:8000/api/v1/auth/signup
 Content-Type: application/json
 
 {
-    "fullName": "Mojiboye Emmanuel",
-    "userName": "dynasty241",
-    "email": "emzzyoluwole@gmail.com",
+    "fullName": "Ibirongbe Moses",
+    "userName": "moses485",
+    "email": "mosesibirongbe@gmail.com",
     "password": "Dynastyda1234#"
 }
 
@@ -34,5 +34,14 @@ PATCH http://localhost:8000/api/v1/auth/send-verification-code
 Content-Type: application/json
 
 {
-    "email": "emzzyoluwole@gmail.com"
+    "email": "mosesibirongbe@gmail.com"
+}
+
+### Verify Verification Code 
+PATCH http://localhost:8000/api/v1/auth/verify-verification-code
+Content-Type: application/json
+
+{
+    "email": "emzzyoluwole@gmail.com",
+    "providedCode": 272325
 }
