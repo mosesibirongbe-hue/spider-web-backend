@@ -11,7 +11,7 @@ router.post('/signin', authController.signin);
 router.post('/signout', authController.signout);
 
 router.patch('/send-verification-code', verificationCodeLimiter, authController.sendVerificationCode);
-router.patch('/verify-verification-code', identifier, authController.verifyVerificationCode);
+router.patch('/verify-verification-code', authController.verifyVerificationCode);
 router.patch('/change-password', identifier, authController.changePassword);
 router.patch('/send-forgot-password-code', authController.sendForgotPasswordCode);
 router.patch('/verify-forgot-password-code', authController.verifyForgotPasswordCode);
