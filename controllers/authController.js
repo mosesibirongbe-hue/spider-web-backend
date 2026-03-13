@@ -26,11 +26,11 @@ exports.signup = async (req, res) => {
         const existingUserName = await User.findOne({ userName })
 
         if (existingUser) {
-            return res.status(401).json({ success: false, message: "User with that email already exists" })
+            return res.status(409).json({ success: false, message: "User with that email already exists" })
         }
 
         if (existingUserName) {
-            return res.status(401).json({ success: false, message: "User with that user name already exists" })
+            return res.status(409).json({ success: false, message: "User with that user name already exists" })
         }
 
         const hashedPassword = await doHash(password, 12);

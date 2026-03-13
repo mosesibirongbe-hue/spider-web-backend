@@ -48,6 +48,14 @@ Content-Type: application/json
     "email": "mosesibirongbe@gmail.com"
 }
 
+### Send Verification Code on Prod
+PATCH https://spider-web-backend.onrender.com/api/v1/auth/send-verification-code
+Content-Type: application/json
+
+{
+    "email": "mosesibirongbe@gmail.com"
+}
+
 ### Verify Verification Code 
 PATCH http://localhost:8000/api/v1/auth/verify-verification-code
 Content-Type: application/json
