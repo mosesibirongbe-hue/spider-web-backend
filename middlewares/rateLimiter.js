@@ -10,3 +10,14 @@ exports.verificationCodeLimiter = rateLimit({
     standardHeaders: true,
     legacyHeaders: false,
 });
+
+exports.forgotPasswordCodeLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 10, 
+    message: {
+        success: false,
+        message: "Too many forgot password requests from this IP. Try again later."
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+})
