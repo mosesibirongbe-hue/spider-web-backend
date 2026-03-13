@@ -293,21 +293,52 @@ exports.changePassword = async (req, res) => {
 
 exports.sendForgotPasswordCode = async (req, res) => {
     const { email } = req.body;
+
+    const COOLDOWN = 60 * 1000;
+    const MAX_ATTEMPTS = 5;
+    const WINDOW = 60 * 60 *1000;
     try {
         const existingUser = await User.findOne({ email })
 
         if (!existingUser) {
             return res
                 .status(404)
-                .json({ success: false, message: "User does not exist!" });
+                .json({ success: false, message: "If the user exists in our system, a forgot password code has been sent." });
+        }
+        if (
+            existingUser.forgotPasswordCodeValidation &&
+            Date.now() - existingUser.forgotPasswordCodeValidation < COOLDOWN
+        ) {
+            return res.status(429).json({
+                success: false,
+                message: "Please wait before requesting another code."
+            });
         }
 
-        const codeValue = Math.floor(Math.random() * 1000000).toString();
+        if (existingUser.forgotPasswordCodeAttemptsWindow &&
+            Date.now() - existingUser.forgotPasswordCodeAttemptsWindow < WINDOW
+        ) {
+            if (existingUser.verificationCodeAttempts >= MAX_ATTEMPTS) {
+                return res.status(429).json({
+                    success: false,
+                    message: "Too many forgot password requests. Try again later."
+                });
+            }
+        } else {
+            existingUser.forgotPasswordCodeAttempts = 0;
+            existingUser.forgotPasswordCodeAttemptsWindow = Date.now();
+        }
+
+        const codeValue = Math.floor(Math.random() * 900000).toString();
+        const templatePath = path.join(__dirname, "../emails/forgotPasswordEmail.html");
+        let emailTemplate = fs.readFileSync(templatePath, "utf8");
+        const html = emailTemplate.replace("{{CODE}}", codeValue);
+
         let info = await transport.sendMail({
             from: process.env.NODE_CODE_SENDING_EMAIL_ADDRESS,
             to: existingUser.email,
             subject: "Forgot Password code",
-            html: "<h1>" + codeValue + "</h1>"
+            html: html
         })
 
         if (info.accepted[0] === existingUser.email) {
@@ -347,7 +378,7 @@ exports.verifyForgotPasswordCode = async (req, res) => {
             return res.status(400).json({ success: false, message: "Something is wrong with the code" })
         }
 
-        if (Date.now() - existingUser.forgotCodeValidation > 5 * 60 * 1000) {
+        if (Date.now() - existingUser.forgotPasswordCodeValidation > 5 * 60 * 1000) {
             return res
                 .status(400)
                 .json({ success: false, message: 'code has expired!' });
