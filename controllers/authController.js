@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 const jwt = require('jsonwebtoken')
 const { signUpSchema, signInSchema, acceptCodeSchema, changePasswordSchema, acceptForgotPasswordCodeSchema } = require('../middlewares/validator')
 const User = require("../models/usersModel")
@@ -155,14 +158,22 @@ exports.sendVerificationCode = async (req, res) => {
             existingUser.verificationCodeAttemptsWindow = Date.now();
         }
 
-        const codeValue = Math.floor(100000 + Math.random() * 900000).toString(); let info = await transport.sendMail({
+        
+        const codeValue = Math.floor(100000 + Math.random() * 900000).toString(); 
+        const templatePath = path.join(__dirname, "../emails/verificationEmail.html");
+        let emailTemplate = fs.readFileSync(templatePath, "utf8");
+        const html =  emailTemplate.replace("{{CODE}}", codeValue);
+
+        let info = await transport.sendMail({
             from: process.env.NODE_CODE_SENDING_EMAIL_ADDRESS,
             to: existingUser.email,
             subject: "Verification code",
-            html: "<h1>" + codeValue + "</h1>"
+            html: html
         })
 
+
         if (info.accepted[0] === existingUser.email) {
+
             const hashedCodeValue = hmacProcess(codeValue, process.env
                 .HMAC_VERIFICATION_CODE_SECRET)
             existingUser.verificationCode = hashedCodeValue;
@@ -208,7 +219,7 @@ exports.verifyVerificationCode = async (req, res) => {
             return res.status(400).json({ success: false, message: "Something is wrong with the code" })
         }
 
-        if (Date.now() - existingUser.verificationCodeValidation > 5 * 60 * 1000) {
+        if (Date.now() - existingUser.verificationCodeValidation > 10 * 60 * 1000) {
             return res
                 .status(400)
                 .json({ success: false, message: 'code has expired!' });
