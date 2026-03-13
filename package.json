@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "keywords": [],
-  "description": "The backend for the Spider Web App, Let's build something people want!!! :)",
+  "description": "The backend for the Spider Web App, Let's make something people want!!! :)",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch --trace-warnings index.js"
+    "start": "node --env-file=.env index.js",
+    "dev": "node --watch --trace-warnings --env-file=.env index.js"
   },
   "author": "Mojiboye Emmanuel (Dynasty)",
   "license": "ISC",
