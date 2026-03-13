@@ -39,11 +39,7 @@ const userSchema = mongoose.Schema({
         select: false,
     },
 
-    /**
-     * verificationCodeAttempts: Number
-verificationCodeAttemptsWindow: Date
-     */
-    verificationCodeAttemps: {
+    verificationCodeAttempts: {
         type: Number,
         select: false
     },
@@ -57,6 +53,14 @@ verificationCodeAttemptsWindow: Date
     },
     forgotPasswordCode: {
         type: String,
+        select: false,
+    },
+    forgotPasswordCodeAttempts: {
+        type: Number,
+        select: false,
+    },
+    forgotPasswordCodeAttemptsWindow: {
+        type: Date,
         select: false,
     },
     forgotPasswordCodeValidation: {
