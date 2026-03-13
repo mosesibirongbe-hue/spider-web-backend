@@ -5,7 +5,7 @@
   "keywords": [],
   "description": "The backend for the Spider Web App, Let's make something people want!!! :)",
   "scripts": {
-    "start": "node --env-file=.env index.js",
+    "start": "node index.js",
     "dev": "node --watch --trace-warnings --env-file=.env index.js"
   },
   "author": "Mojiboye Emmanuel (Dynasty)",
