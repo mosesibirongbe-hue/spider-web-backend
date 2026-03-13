@@ -22,8 +22,8 @@ POST http://localhost:8000/api/v1/auth/signin
 Content-Type: application/json
 
 {
-    "email": "emzzyoluwole@gmail.com",
-    "password": "Dynastyda1234#"
+    "email": "mosesibirongbe@gmail.com",
+    "password": "Mosesrampage222#"
 }
 
 ### Sign Out Route
@@ -45,3 +45,57 @@ Content-Type: application/json
     "email": "emzzyoluwole@gmail.com",
     "providedCode": 272325
 }
+
+### Send Forgot Password Code
+PATCH http://localhost:8000/api/v1/auth/send-forgot-password-code 
+Content-Type: application/json
+
+{
+    "email": "mosesibirongbe@gmail.com"
+}
+
+### Verify Forgot Password Code
+PATCH http://localhost:8000/api/v1/auth/verify-forgot-password-code
+Content-Type: application/json
+
+{
+    "email": "mosesibirongbe@gmail.com",
+    "providedCode": 519132,
+    "newPassword": "Mosesrampage222#"
+}
+
+### GET all platforms
+GET http://localhost:8000/api/v1/platforms/all-platforms
+
+### Create Platforms
+POST http://localhost:8000/api/v1/platforms/create-platform
+Content-Type: application/json
+client: not-browser
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWIyZTk4N2UxNTA0MWQyYmUzMjY1MTIiLCJlbWFpbCI6Im1vc2VzaWJpcm9uZ2JlQGdtYWlsLmNvbSIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNzczMzkwMDM1LCJleHAiOjE3NzM0MTg4MzV9.0GkAjC_KCP2YzSLobXyShIfP4RK0SSDbgczhwtye178
+
+{
+    "title": "Linked",
+    "description": "My Linked Profile where I connect with like-minded people",
+    "link": "https://www.linked.com/in/moses-adegoke"
+}
+
+### GET Single Platform
+GET http://localhost:8000/api/v1/platforms/single-platform?_id=69b3c99901b999fe118a87a8
+
+### Update Platform
+PUT http://localhost:8000/api/v1/platforms/update-platform?_id=69b3cce201b999fe118a87b2
+Content-Type: application/json
+client: not-browser
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWIyZTk4N2UxNTA0MWQyYmUzMjY1MTIiLCJlbWFpbCI6Im1vc2VzaWJpcm9uZ2JlQGdtYWlsLmNvbSIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNzczMzkwMDM1LCJleHAiOjE3NzM0MTg4MzV9.0GkAjC_KCP2YzSLobXyShIfP4RK0SSDbgczhwtye178
+
+{
+    "title": "LinkedIn",
+    "description": "My LinkedIn Profile where I meet and connect with like-minded and great people.",
+    "link": "https://www.linkedin.com/in/moses-adegoke"
+}
+
+### DELETE Platform
+DELETE http://localhost:8000/api/v1/platforms/delete-platform?_id=69b3c99901b999fe118a87a8
+Content-Type: application/json
+client: not-browser
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWIyZTk4N2UxNTA0MWQyYmUzMjY1MTIiLCJlbWFpbCI6Im1vc2VzaWJpcm9uZ2JlQGdtYWlsLmNvbSIsInZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNzczMzkwMDM1LCJleHAiOjE3NzM0MTg4MzV9.0GkAjC_KCP2YzSLobXyShIfP4RK0SSDbgczhwtye178
